@@ -7,3 +7,21 @@ application:
       expiration: 86400000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
+
+range:
+  hemo_min: 12
+  hemo_max: 15
+  leu_min: 4000
+  leu_max: 11000
+  mch_min: 27
+  mch_max: 32
+  mchc_min: 31.5
+  mchc_max: 34.5
+  pdw_min: 9.6
+  pdw_max: 15.2
+
+footer:
+  dr_name: "Dr. Vadapav"
+  dr_degree: "MBBS"
+  tech_name: "Mr. Chutney"
+  tech_pos: "Assistant"

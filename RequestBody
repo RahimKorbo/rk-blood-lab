@@ -1,0 +1,46 @@
+
+Request:
+
+{
+    "patientName": "Test",
+    "age": 18,
+    "gender": "M",
+    "refBy": "Dr. Sharma",
+    "regOn": 2023,
+    "uhid": 1222,
+    "investigation": "Blood Report",
+    "registeredOn": "2023-09-30",
+    "collectedOn": "2023-09-30",
+    "receivedOn": "2023-09-30",
+    "reportedOn": "2023-09-30",
+    "details": {
+        "hemoglobin": 12,
+        "leukocyte": 10,
+        "neutrophils": 10,
+        "lymphocyte": 10,
+        "eosinophils": 10,
+        "monocytes": 10,
+        "basophils": 8,
+        "platelet": 10,
+        "rbc": 10,
+        "hct": 8,
+        "mcv": 200,
+        "mch": 100,
+        "mchc": 200,
+        "mpv": 10,
+        "sd": 10,
+        "cv": 10,
+        "lcr": 20,
+        "pdw": 10,
+        "abo": "11",
+        "rh": "22"
+    }
+}
+
+
+Response:
+
+{
+    "Report generated successfully.": "LabReportRequest(patientName=Test, age=18, gender=M, refBy=Dr. Sharma, regOn=2023, uhid=1222, investigation=Blood Report, registeredOn=2023-09-30, collectedOn=2023-09-30, receivedOn=2023-09-30, reportedOn=2023-09-30, details=ReportDetail(hemoglobin=12.0, leukocyte=10, neutrophils=10, lymphocyte=10, eosinophils=10, monocytes=10, basophils=8, platelet=10.0, rbc=10.0, hct=8, mcv=200.0, mch=100.0, mchc=200.0, mpv=10, sd=10, cv=10, lcr=20.0, pdw=10.0, abo=11, rh=22))"
+}
+

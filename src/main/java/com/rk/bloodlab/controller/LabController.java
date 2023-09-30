@@ -1,9 +1,11 @@
 package com.rk.bloodlab.controller;
 
+import com.itextpdf.text.DocumentException;
 import com.rk.bloodlab.auth.AuthenticationService;
 import com.rk.bloodlab.dto.LabReportRequest;
 import com.rk.bloodlab.service.LabUser;
 import com.rk.bloodlab.service.ReportService;
+import com.rk.bloodlab.utility.PdfUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -40,6 +42,19 @@ public class LabController {
 
         Map<String, String> body = new HashMap<>();
         body.put("message", request.toString());
+        return new ResponseEntity<>(body, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/lab")
+    public ResponseEntity<?> lab(
+            @RequestBody LabReportRequest request
+    ) throws DocumentException, IOException {
+
+
+        Map<String, String> body = new HashMap<>();
+        labUser.processReport(request);
+        body.put("Report generated successfully.", request.toString());
         return new ResponseEntity<>(body, HttpStatus.OK);
 
     }

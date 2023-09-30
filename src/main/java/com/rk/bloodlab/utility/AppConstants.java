@@ -40,10 +40,20 @@ public class AppConstants {
 
     public static String AGE = "age";
 
+    public static String HEMO_INIT = "hemoglobin_init";
 
+    public static String LEU_INIT = "luekocyte_init";
+
+    public static String MCH_INIT = "mch_init";
+
+    public static String MCHC_INIT = "mchc_init";
+
+    public static String PDW_INIT = "pdw_init";
 
 
     public static String LAB_TEMPLATE = "data/LABTEMPLATE-1.pdf";
 
-    public static String NEW_LAB_TEMPLATE = "data/lab_editable.pdf";
+    public static String NEW_LAB_TEMPLATE = "data/lab_editable_final.pdf";
+
+    public static String SEPARATOR = " / ";
 }
