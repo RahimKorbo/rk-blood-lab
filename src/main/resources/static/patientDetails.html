@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        form {
+            margin-top: 20px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Patient Details</h1>
+    <form id="patientForm">
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Patient Name</td>
+                <td><input type="text" id="patientName" value="Praveen" /></td>
+            </tr>
+            <tr>
+                <td>Age</td>
+                <td><input type="number" id="age" value="23" /></td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td><input type="text" id="gender" value="F" /></td>
+            </tr>
+            <tr>
+                <td>Referred By</td>
+                <td><input type="text" id="refBy" value="Dr. Rahul" /></td>
+            </tr>
+            <tr>
+                <td>Registration Year</td>
+                <td><input type="number" id="regOn" value="2023" /></td>
+            </tr>
+            <tr>
+                <td>UHID</td>
+                <td><input type="number" id="uhid" value="1222" /></td>
+            </tr>
+            <tr>
+                <td>Investigation</td>
+                <td><input type="text" id="investigation" value="Blood Report" /></td>
+            </tr>
+            <tr>
+                <td>Registered On</td>
+                <td><input type="date" id="registeredOn" value="2023-09-30" /></td>
+            </tr>
+            <tr>
+                <td>Collected On</td>
+                <td><input type="date" id="collectedOn" value="2023-09-30" /></td>
+            </tr>
+            <tr>
+                <td>Received On</td>
+                <td><input type="date" id="receivedOn" value="2023-09-30" /></td>
+            </tr>
+            <tr>
+                <td>Reported On</td>
+                <td><input type="date" id="reportedOn" value="2023-09-30" /></td>
+            </tr>
+        </table>
+
+        <h2>Test Details</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Hemoglobin</td>
+                <td><input type="number" id="hemoglobin" value="12" /></td>
+            </tr>
+            <tr>
+                <td>Leukocyte</td>
+                <td><input type="number" id="leukocyte" value="10" /></td>
+            </tr>
+            <tr>
+                <td>Neutrophils</td>
+                <td><input type="number" id="neutrophils" value="10" /></td>
+            </tr>
+            <tr>
+                <td>Lymphocyte</td>
+                <td><input type="number" id="lymphocyte" value="10" /></td>
+            </tr>
+            <tr>
+                <td>Eosinophils</td>
+                <td><input type="number" id="eosinophils" value="10" /></td>
+            </tr>
+            <tr>
+                <td>Monocytes</td>
+                <td><input type="number" id="monocytes" value="10" /></td>
+            </tr>
+            <tr>
+                <td>Basophils</td>
+                <td><input type="number" id="basophils" value="8" /></td>
+            </tr>
+            <tr>
+                <td>Platelet</td>
+                <td><input type="number" id="platelet" value="10" /></td>
+            </tr>
+            <tr>
+                <td>RBC</td>
+                <td><input type="number" id="rbc" value="10" /></td>
+            </tr>
+            <tr>
+                <td>HCT</td>
+                <td><input type="number" id="hct" value="8" /></td>
+            </tr>
+            <tr>
+                <td>MCV</td>
+                <td><input type="number" id="mcv" value="200" /></td>
+            </tr>
+            <tr>
+                <td>MCH</td>
+                <td><input type="number" id="mch" value="100" /></td>
+            </tr>
+            <tr>
+                <td>MCHC</td>
+                <td><input type="number" id="mchc" value="200" /></td>
+            </tr>
+            <tr>
+                <td>MPV</td>
+                <td><input type="number" id="mpv" value="10" /></td>
+            </tr>
+            <tr>
+                <td>SD</td>
+                <td><input type="number" id="sd" value="10" /></td>
+            </tr>
+            <tr>
+                <td>CV</td>
+                <td><input type="number" id="cv" value="10" /></td>
+            </tr>
+            <tr>
+                <td>LCR</td>
+                <td><input type="number" id="lcr" value="20" /></td>
+            </tr>
+            <tr>
+                <td>PDW</td>
+                <td><input type="number" id="pdw" value="10" /></td>
+            </tr>
+            <tr>
+                <td>ABO</td>
+                <td><input type="text" id="abo" value="11" /></td>
+            </tr>
+            <tr>
+                <td>Rh</td>
+                <td><input type="text" id="rh" value="22" /></td>
+            </tr>
+        </table>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        const token = sessionStorage.getItem("authToken");
+
+        if (!token) {
+            window.location.href = "../index.html"; // Redirect to login if no token
+        }
+
+        function submitForm() {
+            const patientData = {
+                patientName: document.getElementById("patientName").value,
+                age: parseInt(document.getElementById("age").value),
+                gender: document.getElementById("gender").value,
+                refBy: document.getElementById("refBy").value,
+                regOn: parseInt(document.getElementById("regOn").value),
+                uhid: parseInt(document.getElementById("uhid").value),
+                investigation: document.getElementById("investigation").value,
+                registeredOn: document.getElementById("registeredOn").value,
+                collectedOn: document.getElementById("collectedOn").value,
+                receivedOn: document.getElementById("receivedOn").value,
+                reportedOn: document.getElementById("reportedOn").value,
+                details: {
+                    hemoglobin: parseInt(document.getElementById("hemoglobin").value),
+                    leukocyte: parseInt(document.getElementById("leukocyte").value),
+                    neutrophils: parseInt(document.getElementById("neutrophils").value),
+                    lymphocyte: parseInt(document.getElementById("lymphocyte").value),
+                    eosinophils: parseInt(document.getElementById("eosinophils").value),
+                    monocytes: parseInt(document.getElementById("monocytes").value),
+                    basophils: parseInt(document.getElementById("basophils").value),
+                    platelet: parseInt(document.getElementById("platelet").value),
+                    rbc: parseInt(document.getElementById("rbc").value),
+                    hct: parseInt(document.getElementById("hct").value),
+                    mcv: parseInt(document.getElementById("mcv").value),
+                    mch: parseInt(document.getElementById("mch").value),
+                    mchc: parseInt(document.getElementById("mchc").value),
+                    mpv: parseInt(document.getElementById("mpv").value),
+                    sd: parseInt(document.getElementById("sd").value),
+                    cv: parseInt(document.getElementById("cv").value),
+                    lcr: parseInt(document.getElementById("lcr").value),
+                    pdw: parseInt(document.getElementById("pdw").value),
+                    abo: document.getElementById("abo").value,
+                    rh: document.getElementById("rh").value
+                }
+            };
+
+            fetch("http://localhost:8080/api/lab", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+                body: JSON.stringify(patientData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Data submitted successfully!");
+                console.log(data);
+            })
+            .catch(error => {
+                alert("An error occurred.");
+                console.error(error);
+            });
+        }
+    </script>
+</body>
+</html>

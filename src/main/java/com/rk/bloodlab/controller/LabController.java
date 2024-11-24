@@ -3,15 +3,12 @@ package com.rk.bloodlab.controller;
 import com.itextpdf.text.DocumentException;
 import com.rk.bloodlab.auth.AuthenticationService;
 import com.rk.bloodlab.dto.LabReportRequest;
-import com.rk.bloodlab.service.LabUser;
 import com.rk.bloodlab.service.ReportService;
-import com.rk.bloodlab.utility.PdfUtil;
 import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +19,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor

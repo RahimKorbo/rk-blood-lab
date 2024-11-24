@@ -25,30 +25,24 @@ public class SecurityConfiguration {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
     http
-        .csrf()
-        .disable()
-        .authorizeHttpRequests()
-        .antMatchers("/api/v1/auth/**")
-            .permitAll()
+            .authorizeHttpRequests(
+                    (requests) -> requests.antMatchers("/**", "/index.html", "/static/**", "/resources/**","/resources/pages/patientDetails.html").permitAll()
+            )
+            .csrf().disable() // Disable CSRF for APIs
+            .cors() // Enable CORS configuration
+            .and()
+            .authorizeHttpRequests()
+            .antMatchers("/api/v1/auth/**").permitAll()
+            .antMatchers("/api/lab").permitAll() // If it's public
+            .antMatchers("/**").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authenticationProvider(authenticationProvider)
+            .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-
-       /* .requestMatchers("/api/v1/admin/**").hasRole(ADMIN.name())
-
-        .requestMatchers(GET, "/api/v1/admin/**").hasAuthority(ADMIN_READ.name())
-        .requestMatchers(POST, "/api/v1/admin/**").hasAuthority(ADMIN_CREATE.name())
-        .requestMatchers(PUT, "/api/v1/admin/**").hasAuthority(ADMIN_UPDATE.name())
-        .requestMatchers(DELETE, "/api/v1/admin/**").hasAuthority(ADMIN_DELETE.name())*/
-
-
-        .anyRequest()
-          .authenticated()
-        .and()
-          .sessionManagement()
-          .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(authenticationProvider)
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        ;
 
     return http.build();
   }

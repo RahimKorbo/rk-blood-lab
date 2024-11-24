@@ -36,5 +36,15 @@ public class ReportServiceImpl implements ReportService {
     @Override
     public void processReport(LabReportRequest request) throws DocumentException, IOException {
         pdfUtil.createBloodReport(request);
+        String to = "rkorbo@gmail.com";
+        String subject = "Sample PDF Email";
+        String text = "Here is your PDF attachment.";
+
+        // Replace with the actual path to your generated PDF file
+        String attachmentFilePath = "/home/rahim/LocalProjects/rk-blood-lab/";
+
+        String filename = request.getPatientName()+"_CreatedPdfNew.pdf";
+        //pdfUtil.sendEmailWithAttachment(to, subject, text, attachmentFilePath, filename);
+
     }
 }

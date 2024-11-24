@@ -21,7 +21,10 @@ range:
   pdw_max: 15.2
 
 footer:
-  dr_name: "Dr. Vadapav"
-  dr_degree: "MBBS"
-  tech_name: "Mr. Chutney"
-  tech_pos: "Assistant"
+  dr_name: "Mr. Wasim Punekar"
+  dr_degree: "Sr Lab Assistant"
+  tech_name: "Mr. Aslam"
+  tech_pos: "Jr Lab Assistant"
+
+server:
+  address: 0.0.0.0

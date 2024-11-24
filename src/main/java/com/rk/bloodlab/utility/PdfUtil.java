@@ -2,15 +2,18 @@ package com.rk.bloodlab.utility;
 
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.AcroFields;
-import com.itextpdf.text.pdf.PdfAcroForm;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfStamper;
 import com.rk.bloodlab.dto.LabReportRequest;
 import com.rk.bloodlab.dto.ReportDetail;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 
-import java.awt.*;
+import javax.mail.internet.MimeMessage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -58,6 +61,9 @@ public class PdfUtil {
 
     @Value("${footer.tech_pos}")
     private String tech_pos;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     public void createLabPdf(LabReportRequest request) throws IOException, DocumentException {
 
@@ -145,5 +151,24 @@ public class PdfUtil {
                 ? "H"
                 : "";
 
+    }
+
+    public void sendEmailWithAttachment(String to, String subject, String text, String attachmentFilePath, String filename) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true);
+
+            helper.setTo(to);
+            helper.setSubject(subject);
+            helper.setText(text);
+
+            // Attach the PDF file
+            helper.addAttachment(filename, new File(attachmentFilePath));
+
+            mailSender.send(message);
+        } catch (javax.mail.MessagingException e) {
+            e.printStackTrace();
+            // Handle the exception
+        }
     }
 }
